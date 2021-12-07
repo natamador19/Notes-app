@@ -1,14 +1,15 @@
 import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {publicAxios} from '../../store/utils/Axios';
-
+import Page from '../Page';
 import TextBox from '../UI/TextBox';
 import Password from '../UI/Password';
 import Content from '../UI/Content';
 import { PrimaryButton } from '../UI/Button';
 import { useSelector,useDispatch } from 'react-redux';
-
+import { Link } from 'react-router-dom';
 const getSecurity = ({security})=>security;
+
 
 const Login=()=>{
     const [txtCorreo,setTxtCorreo]=useState("");
@@ -27,14 +28,16 @@ const Login=()=>{
                 payload:null,
             }
         );
+
+        
         publicAxios.post('/api/sec/login',{email:txtCorreo,pswd:txtPassword,}).then(
             ({data})=>{
                 console.log(data);
                 dispatch({
-                    type:"SEC_LOGIN_SUCESS",
+                    type:"SEC_LOGIN_SUCCESS",
                     payload:data,
                 });
-                navigate('/dashboard',{replace:true});
+                navigate('/list',{replace:true});
             }
         ).catch((err)=>{ console.log(err);
             dispatch({
@@ -57,8 +60,8 @@ const Login=()=>{
     const {hasErrors}=security;
 
     return(
-        <Page showHeader={true}title="Iniciar Sesión" showNavBar>
-            <Content>
+        <Page showHeader={true}title="Iniciar Sesión"  showNavBar>
+            <Content >
                 <TextBox
                 label="Correo Electrónico"
                 value={txtCorreo}
@@ -74,7 +77,10 @@ const Login=()=>{
                   name="txtPassword"
                 />
                 <div>
-                    <PrimaryButton onClick={onBtnClick}>Iniciar Sesión</PrimaryButton>
+                    <PrimaryButton  onClick={onBtnClick}>Iniciar Sesión</PrimaryButton>
+                </div>
+                <div className="d-flex justify-content-center">
+                    <Link className="btn btn-success btn btn-primary px-5 rounded-pill  mx-auto " to="/signin">Crear Cuenta </Link>
                 </div>
                 {
                     (hasErrors&&(

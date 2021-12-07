@@ -9,13 +9,14 @@ const Base=({
     label,
     ...elseProps
 })=>{
-    const curatedClassName="form-control ";
+    const curatedClassName="d-flex mt-4";
     const _onChange=onChange || function(e){return null;};
     return(
-        <div className={curatedClassName}>
-            <label>
-                {label}
-                <input
+        <div className="d-flex flex-column ">
+            <label className="py-2 mx-3">
+                {label} 
+            </label>
+            <input className="m-3"
                 type={type}
                 name={name}
                 id={id}
@@ -24,7 +25,6 @@ const Base=({
                 placeholder={placeholder}
                 {...elseProps}
                 />
-            </label>
         </div>
     );
 }

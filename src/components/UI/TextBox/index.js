@@ -18,7 +18,7 @@ const TextBox=(
             placeholder={placeholder}
             value={value}
             label={label}
-            className="form-control"
+            className={className}
             name={name}
             {...elseProps}
         ></Base>

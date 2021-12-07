@@ -7,12 +7,13 @@ publicAxios.defaults.baseURL= process.env.REACT_APP_URL;
 publicAxios.defaults.headers.common['cache-control'] = "no-cache";
 publicAxios.defaults.headers.post['Content-Type'] = "application/json";
 publicAxios.defaults.headers.put['Content-Type'] = "application/json";
+publicAxios.defaults.headers.post['Access-Control-Allow-Origin']=true;
 
 privateAxios.defaults.baseURL = process.env.REACT_APP_URL;
 privateAxios.defaults.headers.common['cache-control'] = "no-cache";
 privateAxios.defaults.headers.post['Content-Type'] = "application/json";
 privateAxios.defaults.headers.put['Content-Type'] = "application/json";
-
+privateAxios.defaults.headers.post['Access-Control-Allow-Origin']=true;
 export const setJWT = (jwt) => {
     privateAxios.defaults.headers.common["Authorization"] = `Bearer ${jwt}`;
   }
